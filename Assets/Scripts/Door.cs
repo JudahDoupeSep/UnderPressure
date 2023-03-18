@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class Door : MonoBehaviour
+public class Door : Triggerable
 {
     public GameObject LeftDoor;
     public GameObject RightDoor;
@@ -10,13 +10,7 @@ public class Door : MonoBehaviour
     public float OpenSpeed;
     public AudioSource OpenSound;
 
-
-    private void Start()
-    {
-        Open();
-    }
-
-    public void Open()
+    public override void Trigger()
     {
         OpenSound.Play();
         StartCoroutine(OpenAsync());
