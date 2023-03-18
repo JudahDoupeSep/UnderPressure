@@ -21,7 +21,14 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         //rb.freezeRotation = true;
+        enabled = false;
+        StartCoroutine(DelayedWakeup());
+    }
 
+    IEnumerator DelayedWakeup()
+    {
+        yield return new WaitForSecondsRealtime(.5f);
+        enabled = true;
     }
 
     // Update is called once per frame

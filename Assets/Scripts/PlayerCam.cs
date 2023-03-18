@@ -11,13 +11,23 @@ public class PlayerCam : MonoBehaviour
     public Transform player;
 
     float xRot;
-    float yRot = 0f;
+    float yRot;
 
     // Start is called before the first frame update
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        xRot = player.rotation.eulerAngles.x;
+        yRot = player.rotation.eulerAngles.y;
+        enabled = false;
+        StartCoroutine(DelayedWakeup());
+    }
+
+    IEnumerator DelayedWakeup()
+    {
+        yield return new WaitForSecondsRealtime(.5f);
+        enabled = true;
     }
 
     // Update is called once per frame
@@ -29,7 +39,7 @@ public class PlayerCam : MonoBehaviour
         yRot += mouseX;
 
         xRot -= mouseY;
-        xRot = Mathf.Clamp(xRot, -90f, 90f);
+        xRot = Mathf.Clamp(xRot, -45f, 45f);
 
         player.rotation = Quaternion.Euler(0, yRot, 0);
         transform.rotation = Quaternion.Euler(xRot, yRot, 0);
