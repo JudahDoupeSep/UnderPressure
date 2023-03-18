@@ -1,28 +1,53 @@
 using System.Collections;
-using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.HighDefinition;
 using UnityEngine.SceneManagement;
 
 public class Oxygen : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public VolumeProfile Profile;
+    public float MaxOxygen = 60;
+    public AnimationCurve VignetteCurve;
 
-    public int oxygen = 10000;
-
+    private float _oxygen = 0;
+    private float death => 1 - (_oxygen / MaxOxygen);
+    
     void Start()
     {
-        
+        StartCoroutine(Respawn());
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        oxygen -= 1;
-        Debug.Log(oxygen/50);
-
-        if(oxygen <= 0)
+        _oxygen -= Time.deltaTime;
+        if(_oxygen <= 0)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            StartCoroutine(Die());
         }
+
+        UpdateEffects();
+    }
+
+    public void UpdateEffects()
+    {
+        if (Profile.TryGet<Vignette>(out var vignette))
+        {
+            vignette.intensity.value = VignetteCurve.Evaluate(death);
+        }
+    }
+
+    public IEnumerator Respawn()
+    {
+        _oxygen = MaxOxygen;
+        yield return new WaitForSeconds(1);
+    }
+    
+    public IEnumerator Die()
+    {
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        yield return Respawn();
     }
 }
