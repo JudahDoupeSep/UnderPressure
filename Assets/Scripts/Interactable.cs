@@ -6,7 +6,7 @@ public class Interactable : MonoBehaviour
 
     public Triggerable Target;
 
-    public void Interact()
+    public virtual void Interact()
     {
         if (Target != null) Target.Trigger();
     }
