@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement")]
     public float moveSpeed;
 
-    public float groundDrag;    
+    public float groundDrag;
 
     float horizontalInput;
     float verticalInput;
