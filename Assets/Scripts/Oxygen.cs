@@ -39,6 +39,8 @@ public class Oxygen : MonoBehaviour
 
             if (winRatio > 0.75f)
             {
+                HeartBeat.volume = 0;
+                Breath.volume = 0;
                 winManager.Win();
                 enabled = false;
             }
