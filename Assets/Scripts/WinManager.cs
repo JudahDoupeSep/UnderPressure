@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class WinManager : MonoBehaviour
@@ -7,12 +8,19 @@ public class WinManager : MonoBehaviour
     public PlayerCam playerCam;
     private void Start()
     {
-        canvas.enabled = false;
+        canvas.gameObject.SetActive(false);
     }
     public void Win()
     {
         player.enabled = false;
         playerCam.canTurn = false;
-        canvas.enabled = true;
+        canvas.gameObject.SetActive(true);
+        StartCoroutine(Quit());
+    }
+
+    private IEnumerator Quit()
+    {
+        yield return new WaitForSeconds(3);
+        Application.Quit();
     }
 }

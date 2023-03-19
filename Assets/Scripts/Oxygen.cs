@@ -34,16 +34,12 @@ public class Oxygen : MonoBehaviour
         {
             var winRatio = (WinDistance - winDistance) / WinDistance;
             
-            if (Profile.TryGet<Vignette>(out var vignette)) 
-                vignette.intensity.value = Mathf.Min(VignetteCurve.Evaluate(1 - winRatio), VignetteCurve.Evaluate(death));
-            
             if (Profile.TryGet<Exposure>(out var exposure))
                 exposure.compensation.value = winRatio * 15;
 
-            if (winRatio > 0.9f)
+            if (winRatio > 0.75f)
             {
                 winManager.Win();
-                Debug.Log("Win");
                 enabled = false;
             }
             
