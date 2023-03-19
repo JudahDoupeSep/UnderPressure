@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -25,6 +26,7 @@ public class DeathManager : MonoBehaviour
         canvas.gameObject.SetActive(true);
         player.enabled = false;
         playerCam.canTurn = false;
+        text.text = DeathMessages[Random.Range(0, DeathMessages.Count)];
         while (text.alpha < 1)
         {
             text.alpha += Time.deltaTime / TransitionTIme;
@@ -39,4 +41,12 @@ public class DeathManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(1);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+    private static List<string> DeathMessages = new List<string>
+    {
+        "Git gud",
+        "Skill issue",
+        "You drowned",
+        "Ben drowned",
+    };
 }
