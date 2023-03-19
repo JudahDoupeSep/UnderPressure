@@ -5781,8 +5781,13 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3525421213577217809, guid: 775f1c2ecee522a47831a0caa1a2d9d9,
         type: 3}
+      propertyPath: MaxOxygen
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 3525421213577217809, guid: 775f1c2ecee522a47831a0caa1a2d9d9,
+        type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4930326115081724170, guid: 775f1c2ecee522a47831a0caa1a2d9d9,
         type: 3}
