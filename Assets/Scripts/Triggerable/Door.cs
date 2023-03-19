@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -9,6 +8,7 @@ public class Door : Triggerable
     public float OpenDistance;
     public float OpenSpeed;
     public AudioSource OpenSound;
+    public bool OpenUp;
 
     public override void Trigger()
     {
@@ -23,8 +23,8 @@ public class Door : Triggerable
         {
             t += Time.deltaTime / OpenSpeed;
             var d = t * OpenDistance;
-            LeftDoor.transform.localPosition = new Vector3(-d, 0, 0);
-            RightDoor.transform.localPosition = new Vector3(d, 0, 0);
+            LeftDoor.transform.localPosition = new Vector3(OpenUp ? 0 : -d, OpenUp ? d : 0, 0);
+            RightDoor.transform.localPosition = new Vector3(OpenUp ? 0 : d, OpenUp ? d : 0, 0);
             yield return new WaitForEndOfFrame();
         }
     }
