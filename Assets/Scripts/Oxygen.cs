@@ -2,8 +2,6 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.HighDefinition;
-using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 public class Oxygen : MonoBehaviour
 {
@@ -17,6 +15,8 @@ public class Oxygen : MonoBehaviour
     public AudioSource Breath;
     public AnimationCurve BreathVolume;
     public float DeathTime = 2;
+    public GameObject Winner;
+    public float WinDistance = 25;
 
     private float _oxygen;
     private float death => 1 - _oxygen / MaxOxygen;
@@ -28,6 +28,25 @@ public class Oxygen : MonoBehaviour
 
     private void Update()
     {
+        float winDistance = Vector3.Distance(transform.position, Winner.transform.position);
+        if (winDistance < WinDistance)
+        {
+            var winRatio = (WinDistance - winDistance) / WinDistance;
+            
+            if (Profile.TryGet<Vignette>(out var vignette)) 
+                vignette.intensity.value = Mathf.Min(VignetteCurve.Evaluate(1 - winRatio), VignetteCurve.Evaluate(death));
+            
+            if (Profile.TryGet<Exposure>(out var exposure))
+                exposure.compensation.value = winRatio * 15;
+
+            if (winRatio > 0.9f)
+            {
+                //TODO: win 
+            }
+            
+            return;
+        }
+        
         _oxygen -= Time.deltaTime;
         if (_oxygen <= 0)
         {
@@ -46,6 +65,8 @@ public class Oxygen : MonoBehaviour
         HeartBeat.pitch = HeartRate.Evaluate(death);
         HeartBeat.volume = HeartVolume.Evaluate(death);
         Breath.volume = BreathVolume.Evaluate(death);
+        if (Profile.TryGet<Exposure>(out var exposure))
+            exposure.compensation.value = 0;
     }
 
     public IEnumerator Respawn()
