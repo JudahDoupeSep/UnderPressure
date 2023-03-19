@@ -380,7 +380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ec400e51152e844b9e6fd1a7a313149, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 7
+  moveSpeed: 3
   groundDrag: 5
 --- !u!82 &9211192956802906613
 AudioSource:
@@ -490,7 +490,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce6b70f349efa8747b73e37005b686bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  oxygen: 10000
+  Profile: {fileID: 11400000, guid: efe0b1a0a2728664aa4b198fb7d8701f, type: 2}
+  MaxOxygen: 60
+  VignetteCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.6439485
+      value: 0.010086983
+      inSlope: 0.07661054
+      outSlope: 0.07661054
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.40837738
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &4930326115187799620
 GameObject:
   m_ObjectHideFlags: 0
