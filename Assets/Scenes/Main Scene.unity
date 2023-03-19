@@ -3580,6 +3580,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerInRoom3
       objectReference: {fileID: 0}
+    - target: {fileID: 4930326115081724181, guid: 775f1c2ecee522a47831a0caa1a2d9d9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 775f1c2ecee522a47831a0caa1a2d9d9, type: 3}
 --- !u!1001 &1444665171
@@ -5283,7 +5288,7 @@ PrefabInstance:
     - target: {fileID: 4930326115081724181, guid: 775f1c2ecee522a47831a0caa1a2d9d9,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 775f1c2ecee522a47831a0caa1a2d9d9, type: 3}
