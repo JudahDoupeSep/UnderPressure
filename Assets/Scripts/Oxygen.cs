@@ -43,6 +43,8 @@ public class Oxygen : MonoBehaviour
             if (winRatio > 0.9f)
             {
                 winManager.Win();
+                Debug.Log("Win");
+                enabled = false;
             }
             
             return;
