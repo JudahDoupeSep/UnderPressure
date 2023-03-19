@@ -7,6 +7,7 @@ using UnityEngine.Serialization;
 
 public class Oxygen : MonoBehaviour
 {
+    public DeathManager deathManager;
     public VolumeProfile Profile;
     public float MaxOxygen = 60;
     public AnimationCurve VignetteCurve;
@@ -18,7 +19,6 @@ public class Oxygen : MonoBehaviour
     public float DeathTime = 2;
 
     private float _oxygen;
-    private bool _dead;
     private float death => 1 - _oxygen / MaxOxygen;
 
     private void Start()
@@ -28,14 +28,11 @@ public class Oxygen : MonoBehaviour
 
     private void Update()
     {
-        if (_dead)
-            return;
-            
         _oxygen -= Time.deltaTime;
         if (_oxygen <= 0)
         {
-            _dead = true;
             StartCoroutine(Die());
+            enabled = false;
         }
 
         UpdateEffects();
@@ -53,7 +50,6 @@ public class Oxygen : MonoBehaviour
 
     public IEnumerator Respawn()
     {
-        _dead = false;
         _oxygen = MaxOxygen;
         
         var t = 0f;
@@ -87,11 +83,9 @@ public class Oxygen : MonoBehaviour
 
             yield return new WaitForEndOfFrame();
         }
-        
-        
+
+
         //TODO: death stuff
-        
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        yield return Respawn();
+        StartCoroutine(deathManager.Die());
     }
 }

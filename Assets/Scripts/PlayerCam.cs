@@ -9,6 +9,7 @@ public class PlayerCam : MonoBehaviour
     public float sensY;
 
     public Transform player;
+    public bool canTurn = true;
 
     float xRot;
     float yRot;
@@ -33,6 +34,7 @@ public class PlayerCam : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!canTurn) return;
         float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
         float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
 
