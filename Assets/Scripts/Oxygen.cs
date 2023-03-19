@@ -6,6 +6,7 @@ using UnityEngine.Rendering.HighDefinition;
 public class Oxygen : MonoBehaviour
 {
     public DeathManager deathManager;
+    public WinManager winManager;
     public VolumeProfile Profile;
     public float MaxOxygen = 60;
     public AnimationCurve VignetteCurve;
@@ -41,7 +42,7 @@ public class Oxygen : MonoBehaviour
 
             if (winRatio > 0.9f)
             {
-                //TODO: win 
+                winManager.Win();
             }
             
             return;
