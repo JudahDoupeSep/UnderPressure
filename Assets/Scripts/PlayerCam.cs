@@ -41,7 +41,7 @@ public class PlayerCam : MonoBehaviour
         yRot += mouseX;
 
         xRot -= mouseY;
-        xRot = Mathf.Clamp(xRot, -45f, 45f);
+        xRot = Mathf.Clamp(xRot, -10f, 10f);
 
         player.rotation = Quaternion.Euler(0, yRot, 0);
         transform.rotation = Quaternion.Euler(xRot, yRot, 0);
