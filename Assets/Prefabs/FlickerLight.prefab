@@ -230,7 +230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5950624ddbae2f841900019c33e77425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRandOn: 8
-  minRandOn: 5
-  maxRandOff: 50
-  minRandOff: 10
+  maxRandOn: 15
+  minRandOn: 10
+  maxRandOff: 90
+  minRandOff: 50
