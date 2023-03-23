@@ -3,6 +3,7 @@ using UnityEngine;
 public class LightScript : Triggerable
 {
     private Light myLight;
+    public bool EnabledByDefault;
     public override void Trigger()
     {
         myLight.enabled = !myLight.enabled;
@@ -11,6 +12,6 @@ public class LightScript : Triggerable
     void Start()
     {
         myLight = GetComponent<Light>();
-        myLight.enabled = false;
+        myLight.enabled = EnabledByDefault;
     }
 }

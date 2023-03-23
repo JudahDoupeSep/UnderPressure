@@ -31,7 +31,7 @@ public class Lever : Interactable
             LeverBone.transform.localRotation = Quaternion.Euler(new Vector3(x, 0, 0));
             yield return new WaitForEndOfFrame();
         }
-        
-        if (Target != null) Target.Trigger();
+
+        base.Interact();
     }
 }
