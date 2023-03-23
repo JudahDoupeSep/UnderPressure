@@ -44,9 +44,9 @@ public class DeathManager : MonoBehaviour
 
     private static List<string> DeathMessages = new List<string>
     {
-        "Git gud",
-        "Skill issue",
-        "You drowned",
-        "Ben drowned",
+        "Learn from the past to enrich your future",
+        "Study the past, seek the future",
+        "Only look back to guide yourself foreward",
+        "Let your experiences guide you",
     };
 }
